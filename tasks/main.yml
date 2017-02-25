@@ -1,11 +1,11 @@
 ---
 - name: install support tools
-  yum: name={{ item }} state=present
-  with_items: [ git ]
+  yum: name="{{ item }}" state="present"
+  with_items: [ "git" ]
 
 - name: install openjdk
-  yum: name={{ item }} state=present
-  with_items: [ java-1.8.0-openjdk, java-1.8.0-openjdk-headless ]
+  yum: name="{{ item }}" state="present"
+  with_items: [ "java-1.8.0-openjdk", "java-1.8.0-openjdk-headless" ]
 
 - name: install drupal-solr
   git: repo="https://github.com/cristiroma/drupal-solr.git" dest="{{ drupal_solr4_home }}" version="master"
@@ -32,4 +32,4 @@
   ini_file: dest="/etc/systemd/system/drupal-solr4.service" section="Service" option="User" value="solr"
 
 - name: enable and start drupal-solr
-  service: name=drupal-solr4 state=started enabled=yes
+  service: name="drupal-solr4" state="started" enabled="yes"
