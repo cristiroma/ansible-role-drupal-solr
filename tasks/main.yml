@@ -30,10 +30,10 @@
   file: owner="solr" group="solr" recurse="yes" path="{{ drupal_solr4_home }}" state="directory"
 
 - name: install drupal-solr service
-  copy: src="{{ drupal_solr4_home }}/scripts/systemd/drupal-solr4.service" dest="/etc/systemd/system/drupal-solr4.service" remote_src="True"
+  copy: src="{{ drupal_solr4_home }}/scripts/systemd/drupal-solr4.service" dest="/etc/systemd/system/{{ drupal_solr4_service_name }}.service" remote_src="True"
 
 - name: prepare drupal-solr service
-  ini_file: dest="/etc/systemd/system/drupal-solr4.service" section="Service" option="User" value="solr"
+  ini_file: dest="/etc/systemd/system/{{ drupal_solr4_service_name }}.service" section="Service" option="User" value="solr"
 
 - name: enable and start drupal-solr
-  service: name="drupal-solr4" state="started" enabled="yes"
+  service: name="{{ drupal_solr4_service_name }}" state="started" enabled="yes"
